@@ -27,17 +27,6 @@ module.exports = (env) => {
       path: path.resolve(__dirname, './dist'),
       filename: '[name].js',
     },
-    plugins: [
-      new MiniCssExtractPlugin({
-        filename: '[name].css',
-        minify: true,
-      }),
-      new HtmlWebpackPlugin({
-        template: './src/index.html',
-        minify: true,
-      }),
-      new CleanWebpackPlugin(),
-    ],
     module: {
       rules: [
         {
@@ -80,6 +69,37 @@ module.exports = (env) => {
           ],
         },
       ],
-    }
+    },
+    plugins: [
+      new CleanWebpackPlugin(),
+      new MiniCssExtractPlugin({
+        filename: '[name].css',
+        minify: true,
+      }),
+      new HtmlWebpackPlugin({
+        template: './src/index.html',
+        minify: true,
+      }),
+      new ImageminPlugin({
+        test: /\.(jpe?g|png|gif|svg)$/i,
+        disable: !isProduction, // Disable during development
+        pngquant: {
+          quality: "80-100",
+        },
+      }),
+    ],
+    optimization: {
+      minimizer: [
+        new UglifyJsPlugin({
+          cache: true,
+          parallel: true,
+          uglifyOptions: {
+            keep_classnames: true,
+            warnings: false,
+          },
+        }),
+        new OptimizeCSSAssetsPlugin({}),
+      ],
+    }    
   }
 };
