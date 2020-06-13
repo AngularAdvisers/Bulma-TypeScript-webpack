@@ -22,7 +22,7 @@ module.exports = (env) => {
       port: 9000,
     },
     entry: [
-      './src/styles/main.scss',
+      './src/main.scss',
       './src/scripts/main.ts'
     ],
     output: {
@@ -51,7 +51,7 @@ module.exports = (env) => {
               {
                   loader: 'file-loader',
                   options: {
-                    publicPath: isProduction ? "../img/" : "",
+                    publicPath: isProduction ? "img/" : "",
                     outputPath: 'img/',
                     name: '[name].[ext]'
                   },
@@ -115,6 +115,10 @@ module.exports = (env) => {
       }),
       new CopyPlugin({
         patterns: [
+          {
+            from: 'src/favicon.ico',
+            to: 'favicon.ico'
+          },
           {
             from: 'src/icons',
             to: 'icons/[path][name].[ext]'
