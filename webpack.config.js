@@ -116,8 +116,8 @@ module.exports = (env) => {
       new CopyPlugin({
         patterns: [
           {
-            from: 'src/icons/**/*',
-            to: 'icons/'
+            from: 'src/icons',
+            to: 'icons/[path][name].[ext]'
           }
         ],
       }),      
