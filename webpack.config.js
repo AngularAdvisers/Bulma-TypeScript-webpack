@@ -51,9 +51,9 @@ module.exports = (env) => {
               {
                   loader: 'file-loader',
                   options: {
-                      publicPath: './src/img',
-                      outputPath: 'img',
-                      name: '[name].[ext]'
+                    publicPath: isProduction ? "../img/" : "",
+                    outputPath: 'img/',
+                    name: '[name].[ext]'
                   },
               },
               {
