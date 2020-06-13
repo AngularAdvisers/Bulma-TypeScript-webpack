@@ -6,6 +6,8 @@ const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const webpack = require("webpack");
 const ImageminPlugin = require("imagemin-webpack-plugin").default;
+const CopyPlugin = require('copy-webpack-plugin');
+
 
 module.exports = (env) => {
   const isProduction = env.production ? true : false;
@@ -21,40 +23,65 @@ module.exports = (env) => {
     },
     entry: [
       './src/styles/main.scss',
-      './src/scripts/main.ts',
+      './src/scripts/main.ts'
     ],
     output: {
       path: path.resolve(__dirname, './dist'),
-      filename: '[name].js',
+      filename: '[name].js'
     },
     module: {
       rules: [
         {
           test: [/.ts$/],
           exclude: /(node_modules)/,
-          use: 'babel-loader',
+          use: 'babel-loader'
         },
         {
           test: /\.s[ac]ss$/i,
           use: [
             MiniCssExtractPlugin.loader,
             'css-loader',
-            'sass-loader',
+            'sass-loader'
           ],
         },
         {
-          test: /\.(png|svg|jpg|gif)$/,
-          use: [
-            {
-              loader: "file-loader",
-              options: {
-                name: "[name].[ext]?[hash]",
-                outputPath: "img/",
-                publicPath: isProduction ? "./img/" : "",
+          test: /\.(png|jpe?g|gif|svg)$/,
+          use: 
+          [
+              {
+                  loader: 'file-loader',
+                  options: {
+                      publicPath: './src/img',
+                      outputPath: 'img',
+                      name: '[name].[ext]'
+                  },
               },
-            },
+              {
+                  loader: 'image-webpack-loader',
+                  options: {
+                      // This loader will be disabled when in development mode. (Images cannot be compressed and optimized)
+                      disable: !isProduction,
+                      mozjpeg: {
+                          progressive: true,
+                          quality: 70
+                      },
+                      optipng: {
+                          enabled: true,
+                      },
+                      pngquant: {
+                          quality: [0.7, 0.9],
+                          speed: 4
+                      },
+                      gifsicle: {
+                          interlaced: false,
+                      },
+                      webp: {
+                          quality: 80
+                      },
+                  },
+              },
           ],
-        },
+        },        
         {
           test: /\.(woff|woff2|eot|ttf|otf)$/,
           use: [
@@ -63,7 +90,7 @@ module.exports = (env) => {
               options: {
                 name: "[name].[ext]?[hash]",
                 outputPath: "fonts/",
-                publicPath: isProduction ? "./fonts/" : "",
+                publicPath: isProduction ? "./fonts/" : ""
               },
             },
           ],
@@ -71,22 +98,30 @@ module.exports = (env) => {
       ],
     },
     plugins: [
-      new CleanWebpackPlugin(),
       new MiniCssExtractPlugin({
         filename: '[name].css',
-        minify: true,
+        minify: true
       }),
       new HtmlWebpackPlugin({
         template: './src/index.html',
-        minify: true,
+        minify: true
       }),
       new ImageminPlugin({
         test: /\.(jpe?g|png|gif|svg)$/i,
         disable: !isProduction, // Disable during development
         pngquant: {
-          quality: "80-100",
+          quality: "80-100"
         },
       }),
+      new CopyPlugin({
+        patterns: [
+          {
+            from: 'src/icons/**/*',
+            to: 'icons/'
+          }
+        ],
+      }),      
+      new CleanWebpackPlugin()
     ],
     optimization: {
       minimizer: [
@@ -95,11 +130,14 @@ module.exports = (env) => {
           parallel: true,
           uglifyOptions: {
             keep_classnames: true,
-            warnings: false,
+            warnings: false
           },
         }),
-        new OptimizeCSSAssetsPlugin({}),
+        new OptimizeCSSAssetsPlugin({})
       ],
+    },
+    resolve: {
+      extensions: ['.js', '.jsx', '.scss', '.gif', '.png', '.jpg', '.jpeg', '.svg']
     }    
   }
 };
