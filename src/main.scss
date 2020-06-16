@@ -18,12 +18,14 @@
   --color-primary: #1d2024;
   --color-secondary: #353b43;
   --color-accent: #12cdea;
-  --font-color: #353b43;
+  --font-color: #878787;
   --hover-color: #353b43;
   --gradient-start:  rgba(0, 0, 0, 0.83);
   --gradient-end: rgba(0, 0, 0, 0.8);
 }
+$title-color: var(--font-color);
 
+$subtitle-color: var(--font-color);
 $navbar-item-hover-background-color: var(--hover-color);
 
 @import "./fonts/style.css";
