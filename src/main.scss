@@ -3,6 +3,25 @@
 // Import a Google Font
 @import url('https://fonts.googleapis.com/css?family=Nunito:400,700');
 
+
+.theme-light {
+  --color-primary: #ffffff;
+  --color-secondary: #fbfbfe;
+  --color-accent: #fd6f53;
+  --hover-color: rgb(217, 216, 216);
+  --font-color: #000000;
+}
+
+.theme-dark {
+  --color-primary: #1d2024;
+  --color-secondary: #353b43;
+  --color-accent: #12cdea;
+  --font-color: #353b43;
+  --hover-color: #353b43;
+}
+
+$navbar-item-hover-background-color: var(--hover-color);
+
 @import "./fonts/style.css";
 
 @import "../node_modules/bulma/sass/utilities/_all.sass";
@@ -42,19 +61,6 @@
 //@import "../node_modules/bulma-extensions/bulma-timeline/src/sass/index.sass";
 //@import "../node_modules/bulma-extensions/bulma-tooltip/src/sass/index.sass";
 
-.theme-light {
-   --color-primary: #ffffff;
-   --color-secondary: #fbfbfe;
-   --color-accent: #fd6f53;
-   --font-color: #000000;
-}
-
-.theme-dark {
-   --color-primary: #1d2024;
-   --color-secondary: #353b43;
-   --color-accent: #12cdea;
-   --font-color: #878787;
-}
 
 img {
     max-height: unset !important;
@@ -77,14 +83,6 @@ img {
       height: 40px;
       margin: auto 0;
       color: #878787;
-    }
-  
-    .navbar-item:focus,
-    .navbar-item:focus-within,
-    .navbar-item:hover,
-    .navbar-link.is-active {
-      background-color: #353b43 !important;
-  
     }
   }
   
