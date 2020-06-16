@@ -23,8 +23,8 @@
   --gradient-start:  rgba(0, 0, 0, 0.83);
   --gradient-end: rgba(0, 0, 0, 0.8);
 }
-$title-color: var(--font-color);
 
+$title-color: var(--font-color);
 $subtitle-color: var(--font-color);
 $navbar-item-hover-background-color: var(--hover-color);
 
@@ -260,10 +260,10 @@ img {
     .hero-area {
       height: auto;
     }
-  
-    .navbar-menu {
-      background-color: #1d2024 !important;
-    }
+  .navbar-menu {
+    background-color: var(--color-primary);
+  }
+ 
   }
 
 .background-color-dark-grey {
