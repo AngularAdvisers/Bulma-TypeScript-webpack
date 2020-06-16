@@ -50,6 +50,7 @@
   },
   "dependencies": {
     "bulma": "^0.9.0",
+    "bulma-extensions": "^6.2.7",
     "bulma-toast": "^2.0.1"
   }
 }

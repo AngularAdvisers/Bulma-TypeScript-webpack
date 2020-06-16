@@ -22,10 +22,47 @@
 @import "../node_modules/bulma/sass/elements/_all.sass";
 @import "../node_modules/bulma/sass/layout/footer.sass";
 @import "../node_modules/bulma/sass/grid/_all.sass";
+// Import Extensions
+//@import "../node_modules/bulma-extensions/bulma-accordion/src/sass/index.sass";
+//@import "../node_modules/bulma-extensions/bulma-badge/src/sass/index.sass";
+//@import "../node_modules/bulma-extensions/bulma-calendar/src/sass/index.sass";
+//@import "../node_modules/bulma-extensions/bulma-carousel/src/sass/index.sass";
+//@import "../node_modules/bulma-extensions/bulma-checkradio/src/sass/index.sass";
+//@import "../node_modules/bulma-extensions/bulma-divider/src/sass/index.sass";
+//@import "../node_modules/bulma-extensions/bulma-iconpicker/src/sass/index.sass";
+//@import "../node_modules/bulma-extensions/bulma-pageloader/src/sass/index.sass";
+//@import "../node_modules/bulma-extensions/bulma-pricingtable/src/sass/index.sass";
+//@import "../node_modules/bulma-extensions/bulma-quickview/src/sass/index.sass";
+//@import "../node_modules/bulma-extensions/bulma-ribbon/src/sass/index.sass";
+//@import "../node_modules/bulma-extensions/bulma-slider/src/sass/index.sass";
+//@import "../node_modules/bulma-extensions/bulma-steps/src/sass/index.sass";
+//@import "../node_modules/bulma-extensions/bulma-switch/src/sass/index.sass";
+//@import "../node_modules/bulma-extensions/bulma-tagsinput/src/sass/index.sass";
+//@import "../node_modules/bulma-extensions/bulma-timeline/src/sass/index.sass";
+//@import "../node_modules/bulma-extensions/bulma-tooltip/src/sass/index.sass";
 
 $dark-grey:  #1d2024;
 $light-grey: #353b43;
 $global-text-color: #878787;
+
+.theme-light {
+  // --color-primary: #0060df;
+  // --color-secondary: #fbfbfe;
+  // --color-accent: #fd6f53;
+  // --font-color: #000000;
+  $dark-grey:  #f4f7fa;
+  $light-grey: #353b43;
+  $global-text-color: #878787;
+  }
+.theme-dark {
+  // --color-primary: #17ed90;
+  // --color-secondary: #2a2c2d;
+  // --color-accent: #12cdea;
+  // --font-color: #ffffff;
+  $dark-grey:  #1d2024;
+  $light-grey: #353b43;
+  $global-text-color: #878787;
+  }
 
 img {
     max-height: unset !important;
@@ -390,4 +427,78 @@ body {
   
   }
   
+/* The switch - the box around the slider */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch:hover {
+ background-color: unset !important;
+}
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 40px;
+  width: 40px;
+  left: 0px;
+  bottom: 4px;
+  top: 0;
+  bottom: 0;
+  margin: auto 0;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+  box-shadow: 0 0px 15px #2020203d;
+  background: white url('./img/night.png');
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+input:checked + .slider {
+  background-color: #2196f3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196f3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(24px);
+  -ms-transform: translateX(24px);
+  transform: translateX(24px);
+  background: white url('./img/sunny.png');
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
 
