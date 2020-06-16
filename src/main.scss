@@ -10,6 +10,8 @@
   --color-accent: #fd6f53;
   --hover-color: rgb(217, 216, 216);
   --font-color: #000000;
+  --gradient-start:  rgba(0, 0, 0, 0);
+  --gradient-end: rgba(0, 0, 0, 0);
 }
 
 .theme-dark {
@@ -18,6 +20,8 @@
   --color-accent: #12cdea;
   --font-color: #353b43;
   --hover-color: #353b43;
+  --gradient-start:  rgba(0, 0, 0, 0.83);
+  --gradient-end: rgba(0, 0, 0, 0.8);
 }
 
 $navbar-item-hover-background-color: var(--hover-color);
@@ -218,7 +222,7 @@ img {
   }
 
   .hero-area {
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.83), rgba(0, 0, 0, 0.8)), url("./img/orchard-skills-1200x628.png")no-repeat center center;
+    background: linear-gradient(to bottom, var(--gradient-start), var(--gradient-end)), url("./img/orchard-skills-1200x628.png")no-repeat center center;
     background-size: cover;
     height: 100vh;
   }  
